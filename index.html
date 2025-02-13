@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación XV Años</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div id="sobre-container">
+        <img src="sobre.png" alt="Sobre" id="sobre-imagen">
+        <button id="boton-abrir">Abrir</button>
+    </div>
+
+    <div id="invitacion" class="hidden">
+        <!-- SECCIÓN 1: Animación de textos -->
+        <section id="section1" class="section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h6 class="animate">MIS XV AÑOS</h6>
+                    <h3 class="animate">Maria Jose Leon Avila</h3>
+                    <h6 class="animate">26 DE MAYO 2025</h6>
+                    <div class="scroll-down">▼<br>DESLIZA</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: Aparece desde el centro -->
+        <section id="section2" class="section">
+            <div class="invitation-text">
+                <p>Con la bendicion de dios, el amor de mi madre y familiares me siento feliz de llegar a este momento de mi vida, el dia que dejare atras mi infancia y comenzare un nuevo y maravilloso viaje.... 
+                    <br> <br> A ustedes que formaron parte de tanos sueños e ilusiones quiero invitarlos a compartir la magia de una noche que sera unica y sin duda inolvidable Mis XV </p>
+                <div class="heart">❤️</div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: Aparece de abajo hacia arriba -->
+        <section id="section3" class="section">
+            <div class="info-container">
+                <p class="title">Con la bendición de Dios y en compañía de mis padres y padrinos</p>
+                <h4>Mi madre</h4>
+                <p>Sra. Jenny Paola Avila Remolina</p>
+                <h4>Mis Padrinos</h4>
+                <p>Sr. XXXXXXXXXXXX</p>
+                <p>Sra. XXXXXXXXXX</p>
+                <p class="footer-text">Nos complace invitarte a ser parte de este gran día.</p>
+            </div>
+        </section>
+        <section id="countdown-section" class="countdown">
+            <div class="countdown-container">
+            <!-- <img src="image.png" alt="XV Años" class="countdown-background"> -->
+                <div class="countdown-content">
+                    <h2 class="countdown-title">Faltan</h2>
+                    <div class="countdown-timer">
+                        <div class="countdown-item"><span id="days">0</span><br>DÍAS</div>
+                        <div class="countdown-item"><span id="hours">0</span><br>HRS</div>
+                        <div class="countdown-item"><span id="minutes">0</span><br>MIN</div>
+                        <div class="countdown-item"><span id="seconds">0</span><br>SEG</div>
+                    </div>
+                    <h3 class="countdown-subtitle">para mis XV años</h3>
+                </div>
+            </div>
+        </section>
+        <section id="evento-ubicacion" class="ubicacion">
+            <h2 class="ubicacion-titulo">Dónde y Cuándo</h2>
+            <!--  -->
+            <div class="ubicacion-container">
+                <img src="image.png" alt="Catedral" class="ubicacion-imagen">
+                
+                <div class="ubicacion-detalles">
+                    <h3 class="ubicacion-subtitulo">Lugar del evento</h3>
+                    <p class="ubicacion-lugar">Porque eres muy especial para mi quiero que compartas con migo este dia.</p>
+                    <p class="ubicacion-lugar"> <br> Catedral de Santa María la Real de Almudena</p>
+                    <p class="ubicacion-hora">18:00 hrs</p>
+                    <p class="ubicacion-direccion">C. de Bailén, 10, 28013<br>Madrid</p>
+                    
+                    <a href="https://maps.app.goo.gl/hZhTeU9uf4tRcZVv5" target="_blank" class="ubicacion-boton">
+                        VER MAPA
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section class="timeline-container">
+            <h2 class="timeline-title">Te compartimos los detalles de la celebración</h2>
+            <div class="timeline">
+                <div class="event"  data-percentage="10">
+                    <span class="time">19:30 HRS</span>
+                    <h3 class="event-title">Presentación</h3>
+                    <img src="EB-Iconos-web-41.png" alt="Presentación">
+                </div>
+                <div class="event"  data-percentage="45">
+                    <span class="time">21:00 HRS</span>
+                    <h3 class="event-title">Celebración</h3>
+                    <img src="iconocolordoradoplato.png" alt="Cena">
+                </div>
+                <div class="event"  data-percentage="85">
+                    <span class="time">22:00 HRS</span>
+                    <h3 class="event-title">A bailar</h3>
+                    <img src="iconocolordoradomusica.png" alt="Baile">
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </section>
+        <section id="seccion7">
+            <section class="invitation-container">
+                <h2 class="invitation-title">Confirmar asistencia:</h2>
+                <p class="invitation-name">para confirmar la asistencia por favor digitar el nombre de la familia</p>
+                <div class="form-container">
+                    <p class="invitation-select">FLIA</p>- 
+                    <input id="num-asistentes" class="invitation-select">
+                </div>
+
+            
+                <button id="confirmar-btn" class="invitation-button">CONFIRMAR</button>
+            
+                <p id="confirmacion-mensaje" class="confirmation-message"></p>
+            </section>
+        </section>
+    
+        
+        
+        
+    </div>
+</body>
+</html>
+
+
+
+
+
