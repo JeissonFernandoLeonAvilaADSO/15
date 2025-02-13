@@ -95,3 +95,23 @@ document.addEventListener("DOMContentLoaded", function () {
         mensajeConfirmacion.textContent = `✅ Has confirmado ${asistentesSeleccionados} asistente(s).`;
     });
 });
+
+document.querySelector("form").addEventListener("submit", async function(event) {
+    event.preventDefault(); // Evita que la página se recargue
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    // Enviar datos a Netlify
+    const response = await fetch("/", {
+        method: "POST",
+        body: formData,
+    });
+
+    if (response.ok) {
+        document.getElementById("confirmacion-mensaje").textContent = "¡Asistencia confirmada!";
+        form.reset(); // Opcional: limpiar el formulario
+    } else {
+        document.getElementById("confirmacion-mensaje").textContent = "Hubo un error, intenta de nuevo.";
+    }
+});
