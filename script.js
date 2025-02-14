@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const sobreContainer = document.getElementById("sobre-container");
     const invitacion = document.getElementById("invitacion");
 
+    // Ocultar sobre y mostrar invitación
+    sobreContainer.style.display = "none";
+    invitacion.style.display = "block";
+
     botonAbrir.addEventListener("click", function () {
         sobreContainer.style.display = "none";
         invitacion.style.display = "block";
@@ -38,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let porcentaje = ((centroPantalla - sectionTop) / sectionHeight) * 100;
         porcentaje = Math.max(0, Math.min(100, porcentaje));
 
-        console.log(`Progreso: ${porcentaje}%`);
         progress.style.height = `${porcentaje}%`;
 
         events.forEach(event => {
@@ -83,35 +86,59 @@ document.addEventListener("DOMContentLoaded", function () {
     const mensajeConfirmacion = document.getElementById("confirmacion-mensaje");
 
     botonConfirmar.addEventListener("click", function () {
-        const asistentesSeleccionados = selectAsistentes.value;
+        const asistentesSeleccionados = selectAsistentes.value.trim();
 
         if (!asistentesSeleccionados) {
-            mensajeConfirmacion.style.color = "red";
-            mensajeConfirmacion.textContent = "⚠️ Debes seleccionar el número de asistentes.";
+            Swal.fire({
+                title: "⚠️ Error",
+                text: "Debes ingresar el nombre de la familia antes de confirmar.",
+                icon: "warning",
+                confirmButtonText: "Aceptar"
+            });
             return;
         }
 
         mensajeConfirmacion.style.color = "green";
-        mensajeConfirmacion.textContent = `✅ Has confirmado ${asistentesSeleccionados} asistente(s).`;
-    });
-});
-
-document.querySelector("form").addEventListener("submit", async function(event) {
-    event.preventDefault(); // Evita que la página se recargue
-
-    const form = event.target;
-    const formData = new FormData(form);
-
-    // Enviar datos a Netlify
-    const response = await fetch("/", {
-        method: "POST",
-        body: formData,
+        mensajeConfirmacion.textContent = `✅ Has confirmado asistencia para: ${asistentesSeleccionados}`;
     });
 
-    if (response.ok) {
-        document.getElementById("confirmacion-mensaje").textContent = "¡Asistencia confirmada!";
-        form.reset(); // Opcional: limpiar el formulario
-    } else {
-        document.getElementById("confirmacion-mensaje").textContent = "Hubo un error, intenta de nuevo.";
-    }
+    document.querySelector("form").addEventListener("submit", async function(event) {
+        event.preventDefault(); // Evita que la página se recargue
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        // Enviar datos a Netlify
+        try {
+            const response = await fetch("/", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (response.ok) {
+                Swal.fire({
+                    title: "¡Asistencia confirmada!",
+                    text: "Tu confirmación ha sido enviada correctamente.",
+                    icon: "success",
+                    confirmButtonText: "Aceptar"
+                });
+
+                form.reset(); // Limpia el formulario después del envío
+            } else {
+                Swal.fire({
+                    title: "❌ Error",
+                    text: "Hubo un problema al enviar la confirmación. Inténtalo de nuevo.",
+                    icon: "error",
+                    confirmButtonText: "Aceptar"
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                title: "❌ Error",
+                text: "No se pudo conectar con el servidor. Revisa tu conexión e intenta nuevamente.",
+                icon: "error",
+                confirmButtonText: "Aceptar"
+            });
+        }
+    });
 });

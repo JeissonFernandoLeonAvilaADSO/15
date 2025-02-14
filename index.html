@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitación XV Años</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <script type="module" src="script.js"></script>
+    <!-- Agrega esto en el <head> o antes de cerrar el </body> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
     <div id="sobre-container">
@@ -38,13 +41,7 @@
         <!-- SECCIÓN 3: Aparece de abajo hacia arriba -->
         <section id="section3" class="section">
             <div class="info-container">
-                <p class="title">Con la bendición de Dios y en compañía de mis padres y padrinos</p>
-                <h4>Mi madre</h4>
-                <p>Sra. Jenny Paola Avila Remolina</p>
-                <h4>Mis Padrinos</h4>
-                <p>Sr. XXXXXXXXXXXX</p>
-                <p>Sra. XXXXXXXXXX</p>
-                <p class="footer-text">Nos complace invitarte a ser parte de este gran día.</p>
+                <p class="title">Una hija es un recuerdo del pasado; <br> momentos alegres del presente; <br> esperanza y promesas para el futuro, por eso quiero tenerte presente en esta celebracion de estos XV años</p>
             </div>
         </section>
         <section id="countdown-section" class="countdown">
@@ -104,6 +101,27 @@
                 <div class="progress"></div>
             </div>
         </section>
+        <!-- SECCIÓN 8: Aparece de abajo hacia arriba -->
+        <section id="section3" class="section">
+            <div class="info-container">
+                <p class="title">Codigo de vestimenta</p>
+                <section class="section8cont">
+                    <div class="mujerCont">
+                        <p class="title">Mujer</p>
+                            <img class="vestido" src="Vestido.png" alt="Vestido">
+                    </div>
+                    <div class="midCont">
+                        <p>Recomendamos colores en tonos tierra tierra</p>
+                    </div>
+                    <div class="hombreCont">
+                        <p class="title">Hombre</p>
+                        <img class="vestido" src="TrajeHombre.png" alt="Traje">
+                    </div>
+                </section>
+                <p class="title">"OjO"</p>
+                <p class="title">lleva tus zapatos mas comodos, "Bailaremos toda la noche"</p>
+            </div>
+        </section>  
         <section id="seccion7">
             <section class="invitation-container">
                 <form name="contact" method="POST" netlify>
@@ -122,10 +140,7 @@
             </form>
             </section>
         </section>
-    
-        
-        
-        
+
     </div>
 </body>
 </html>
