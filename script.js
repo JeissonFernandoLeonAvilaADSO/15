@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
     actualizarLineaTiempo();
 
     function actualizarContador() {
-        const eventoFecha = new Date("May 26, 2025 19:00:00 GMT-5").getTime();
+        const eventoFecha = new Date("March 26, 2025 19:00:00 GMT-5").getTime();
         const ahora = new Date().getTime();
         const diferencia = eventoFecha - ahora;
 
