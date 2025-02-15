@@ -26,40 +26,60 @@ document.addEventListener("DOMContentLoaded", function () {
         let windowHeight = window.innerHeight;
         let sectionBottom = sectionTop + sectionHeight;
         let centroPantalla = scrollTop + windowHeight / 2;
-
+    
         if (centroPantalla < sectionTop) {
             progress.style.height = "0%";
-            events.forEach(event => event.classList.remove("visible-text"));
+            events.forEach(event => {
+                event.classList.remove("visible-text");
+                event.classList.remove("filled-circle");
+            });
             return;
         }
-
+    
         if (centroPantalla > sectionBottom) {
             progress.style.height = "100%";
-            events.forEach(event => event.classList.add("visible-text"));
+            events.forEach(event => {
+                event.classList.add("visible-text");
+                event.classList.add("filled-circle");
+            });
             return;
         }
-
+    
         let porcentaje = ((centroPantalla - sectionTop) / sectionHeight) * 100;
         porcentaje = Math.max(0, Math.min(100, porcentaje));
-
+    
         progress.style.height = `${porcentaje}%`;
-
+    
         events.forEach(event => {
             let porcentajeEvento = parseFloat(event.dataset.percentage);
-
+            let eventCircle = event.querySelector(".event-circle");
+    
+            // ✅ Aparecer texto cuando la barra llega al porcentaje correspondiente
             if (porcentaje >= porcentajeEvento) {
                 event.classList.add("visible-text");
             } else {
                 event.classList.remove("visible-text");
             }
+    
+            // ✅ Rellenar círculo solo cuando la barra lo alcance
+            let circuloTop = eventCircle.offsetTop + eventCircle.clientHeight / 2;
+            let progresoActual = (progress.clientHeight / sectionHeight) * 100;
+    
+            if (progresoActual >= porcentajeEvento) {
+                event.classList.add("filled-circle"); // Solo añade la clase cuando la barra llega
+            } else {
+                event.classList.remove("filled-circle");
+            }
         });
     }
-
+    
+    // Escuchar el evento de scroll y actualizar la línea de tiempo
     window.addEventListener("scroll", actualizarLineaTiempo);
     actualizarLineaTiempo();
+    
 
     function actualizarContador() {
-        const eventoFecha = new Date("March 26, 2025 19:00:00 GMT-5").getTime();
+        const eventoFecha = new Date("March 23, 2025 19:00:00 GMT-5").getTime();
         const ahora = new Date().getTime();
         const diferencia = eventoFecha - ahora;
 
