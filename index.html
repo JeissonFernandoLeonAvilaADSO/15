@@ -6447,13 +6447,13 @@ flexibility(document.documentElement);
                                                     <form name="Asistentes" class="elementor-form" method="post" id="form_send_counter" netlify>
                                                         <div class="elementor-form-fields-wrapper elementor-labels-">
                                                             <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-select_invitations elementor-col-100 elementor-field-required">
-                                                                <label for="form-field-select_invitations" class="elementor-field-label elementor-screen-only">Asistentes							</label>
-                                                                <div class="elementor-field elementor-select-wrapper remove-before ">
+                                                                <label for="form-field-select_invitations-2" class="elementor-field-label elementor-screen-only">Asistentes</label>
+                                                                <div class="elementor-field elementor-select-wrapper remove-before">
                                                                     <div class="select-caret-down-wrapper">
                                                                         <i aria-hidden="true" class="eicon-caret-down"></i>
                                                                     </div>
-                                                                    <input name="form_fields[select_invitations]" id="form-field-select_invitations" class="elementor-field-textual elementor-size-sm" disabled placeholder="FLIA" style="width: 20%; margin-right: 5px;">
-                                                                    <input name="Familia" id="form-field-select_invitations" class="elementor-field-textual elementor-size-sm" required="required">
+                                                                    <input name="form_fields[select_invitations]" id="form-field-select_invitations-1" class="elementor-field-textual elementor-size-sm" readonly placeholder="FLIA" style="width: 20%; margin-right: 5px;" value="FLIA">
+                                                                    <input name="Familia" id="form-field-select_invitations-2" class="elementor-field-textual elementor-size-sm" required="required">
                                                                 </div>
                                                             </div>
                                                             <div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
@@ -6468,30 +6468,31 @@ flexibility(document.documentElement);
                                                     <script>
                                                         document.querySelector("#form_send_counter").addEventListener("submit", async function(event) {
                                                             event.preventDefault(); // Evita que la página se recargue
-
+                                            
                                                             const form = event.target;
                                                             const formData = new FormData(form);
-
+                                            
                                                             // Enviar datos a Netlify
                                                             try {
                                                                 const response = await fetch("/", {
                                                                     method: "POST",
                                                                     body: formData,
                                                                 });
-
+                                            
                                                                 if (response.ok) {
-                                                                    alert('confirm')
+                                                                    alert('confirm');
                                                                     form.reset(); // Limpia el formulario después del envío
                                                                 } else {
-                                                                    alert('No')
+                                                                    alert('No');
                                                                 }
                                                             } catch (error) {
-                                                                alert('No No')
+                                                                alert('No No');
                                                             }
                                                         });
                                                     </script>
                                                 </div>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
