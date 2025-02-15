@@ -6445,10 +6445,6 @@ flexibility(document.documentElement);
                                             <div class="elementor-element elementor-element-5b96b054 elementor-button-align-center elementor-widget elementor-widget-form" data-id="5b96b054" data-element_type="widget" data-settings="{&quot;step_next_label&quot;:&quot;Siguiente&quot;,&quot;step_previous_label&quot;:&quot;Anterior&quot;,&quot;step_type&quot;:&quot;none&quot;,&quot;button_width&quot;:&quot;100&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}" data-widget_type="form.default">
                                                 <div class="elementor-widget-container">
                                                     <form name="Asistentes" class="elementor-form" method="post" id="form_send_counter" netlify>
-                                                        <input type="hidden" name="post_id" value="40712"/>
-                                                        <input type="hidden" name="form_id" value="5b96b054"/>
-                                                        <input type="hidden" name="referer_title" value="Evento Bonito Modelo clásicas 7"/>
-                                                        <input type="hidden" name="queried_id" value="40712"/>
                                                         <div class="elementor-form-fields-wrapper elementor-labels-">
                                                             <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-select_invitations elementor-col-100 elementor-field-required">
                                                                 <label for="form-field-select_invitations" class="elementor-field-label elementor-screen-only">Asistentes							</label>
@@ -6469,6 +6465,31 @@ flexibility(document.documentElement);
                                                             </div>
                                                         </div>
                                                     </form>
+                                                    <script>
+                                                        document.querySelector("#form_send_counter").addEventListener("submit", async function(event) {
+                                                            event.preventDefault(); // Evita que la página se recargue
+
+                                                            const form = event.target;
+                                                            const formData = new FormData(form);
+
+                                                            // Enviar datos a Netlify
+                                                            try {
+                                                                const response = await fetch("/", {
+                                                                    method: "POST",
+                                                                    body: formData,
+                                                                });
+
+                                                                if (response.ok) {
+                                                                    alert('confirm')
+                                                                    form.reset(); // Limpia el formulario después del envío
+                                                                } else {
+                                                                    alert('No')
+                                                                }
+                                                            } catch (error) {
+                                                                alert('No No')
+                                                            }
+                                                        });
+                                                    </script>
                                                 </div>
                                             </div>
                                         </div>
