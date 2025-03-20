@@ -13,6 +13,8 @@
             var gtm4wp_datalayer_name = "dataLayer";
             var dataLayer = dataLayer || [];
         </script>
+        <!-- Script para depuración y cierre del modal -->
+
         <!-- End Google Tag Manager for WordPress by gtm4wp.com -->
         <!-- This site is optimized with the Yoast SEO plugin v24.4 - https://yoast.com/wordpress/plugins/seo/ -->
         <title>Evento Bonito Modelo clásicas 7</title>
@@ -5858,6 +5860,26 @@ flexibility(document.documentElement);
         <link rel="apple-touch-icon" href="https://eventobonito.com/wp-content/uploads/2022/05/Logo-Evento-bonito-2-300x300.png?ver=1700122131"/>
         <meta name="msapplication-TileImage" content="https://eventobonito.com/wp-content/uploads/2022/05/Logo-Evento-bonito-2-300x300.png?ver=1700122131"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+        <style>
+            .modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-color: black;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+            video {
+                max-width: 100vw;
+                max-height: 100vh;
+            }
+        </style>
+
+
     </head>
     <body class="page-template page-template-elementor_canvas page page-id-40712 page-child parent-pageid-33288 wp-custom-logo theme-astra woocommerce-no-js woocommerce-multi-currency-USD ast-desktop ast-page-builder-template ast-no-sidebar astra-4.8.5 ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-full-width-primary-header ast-full-width-layout elementor-default elementor-template-canvas elementor-kit-15 elementor-page elementor-page-40712 astra-addon-4.4.0">
         <!-- GTM Container placement set to automatic -->
@@ -5868,6 +5890,48 @@ flexibility(document.documentElement);
         <!-- End Google Tag Manager (noscript) -->
         <!-- GTM Container placement set to automatic -->
         <!-- Google Tag Manager (noscript) -->
+        <div class="modal" id="videoModal"> 
+            <video id="videoPlayer" autoplay> 
+                <source src="video.mp4" type="video/mp4"> Tu navegador no soporta la reproducción de videos.
+             </video> 
+        </div>
+        <script>
+
+            const modal = document.getElementById("videoModal");
+            const video = document.getElementById("videoPlayer");
+
+            // Cuando se carguen los metadatos, se posiciona el video en el segundo 20 y se fuerza la reproducción.
+            video.addEventListener("loadedmetadata", function () {
+            if (video.duration > 20) {
+                video.currentTime = 20;
+            } else {
+                console.warn("El video es demasiado corto para iniciar en el segundo 20");
+            }
+            video.play().catch(function (error) {
+                console.error("Error en el autoplay:", error);
+            });
+            });
+
+            // Cuando el video comienza a reproducirse, se programa el cierre del modal.
+            video.addEventListener("play", function () {
+            console.log("Video started playing from " + video.currentTime + " seconds");
+            setTimeout(function () {
+                modal.style.display = "none";  // Cierra el modal
+                video.muted = true;            // Mutear el video al cerrar el modal
+                console.log("Modal closed and video is now muted");
+            }, 30000); // 30,500 ms (ajusta el tiempo si es necesario)
+            });
+
+            // Logs adicionales para depuración.
+            video.addEventListener("loadeddata", function () {
+            console.log("Video data loaded");
+            });
+            video.addEventListener("error", function (e) {
+            console.error("Error loading video:", e);
+            });
+          </script>
+          
+
         <div data-elementor-type="wp-page" data-elementor-id="40712" class="elementor elementor-40712" data-elementor-post-type="page">
             <section class="elementor-section elementor-top-section elementor-element elementor-element-5af3840 elementor-hidden-desktop elementor-hidden-tablet elementor-hidden-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="5af3840" data-element_type="section">
                 <div class="elementor-container elementor-column-gap-default">
@@ -8240,9 +8304,11 @@ flexibility(document.documentElement);
                 }
             });
         </script>
+        
     
         <script>
             Dropzone.autoDiscover = false;
         </script>
     </body>
+
 </html>
