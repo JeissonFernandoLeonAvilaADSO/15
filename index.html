@@ -5870,32 +5870,61 @@ flexibility(document.documentElement);
         <!-- End Google Tag Manager (noscript) -->
         <!-- GTM Container placement set to automatic -->
         <!-- Google Tag Manager (noscript) -->
-        <!-- Elemento de audio -->
-        <audio id="audioPlayer" autoplay>
-            <source src="audio.mp3" type="audio/mp3">
+        <audio id="audioPlayer" preload="auto">
+            <source src="https://mariajose15s.netlify.app/audio.mp3" type="audio/mp3">
             Tu navegador no soporta la reproducción de audio.
         </audio>
-
-        <!-- Script para iniciar la reproducción y depurar -->
+        
         <script>
-
-            const audio = document.getElementById("audioPlayer");
-
-            // Intenta reproducir el audio y muestra errores en caso de ocurrir
-            audio.play().catch(function(error) {
-                console.error("Error reproduciendo el audio:", error);
+            document.addEventListener("DOMContentLoaded", function () {
+                const audio = document.getElementById("audioPlayer");
+        
+                if (!audio) {
+                    console.error("❌ No se encontró el elemento <audio>. Verifica el ID.");
+                    return;
+                }
+        
+                console.log("✅ Elemento <audio> encontrado.");
+        
+                // Verifica si el audio se carga correctamente
+                audio.addEventListener("loadeddata", () => {
+                    console.log("🎵 Audio cargado correctamente.");
+                });
+        
+                audio.addEventListener("canplaythrough", () => {
+                    console.log("🔄 canplaythrough detectado.");
+                });
+        
+                audio.addEventListener("error", () => {
+                    console.error("❌ Error al cargar el audio. Verifica la URL.");
+                });
+        
+                function playAudio() {
+                    console.log(1);
+                    const playPromise = audio.play();
+        
+                    if (playPromise !== undefined) {
+                        console.log(2);
+                        playPromise.then(() => {
+                            console.log("✅ Audio reproduciéndose automáticamente");
+                        }).catch(error => {
+                            console.warn("⚠️ Autoplay bloqueado. Se necesita interacción del usuario.");
+                            alert("Haz clic en la página para activar el audio.");
+                        });
+                    }
+                }
+                playAudio();
+        
+                // Intentar reproducir automáticamente
+                audio.addEventListener("canplaythrough", playAudio);
+        
+                // Si autoplay está bloqueado, habilitar clic manual
+                document.body.addEventListener("click", function () {
+                    console.log("🎵 Intentando reproducir audio con clic del usuario.");
+                    playAudio();
+                }, { once: true });
             });
-
-            audio.addEventListener("loadeddata", function () {
-                console.log("Audio cargado y listo para reproducir");
-            });
-
-            audio.addEventListener("error", function (e) {
-                console.error("Error cargando el audio:", e);
-            });
-
         </script>
-          
 
         <div data-elementor-type="wp-page" data-elementor-id="40712" class="elementor elementor-40712" data-elementor-post-type="page">
             <section class="elementor-section elementor-top-section elementor-element elementor-element-5af3840 elementor-hidden-desktop elementor-hidden-tablet elementor-hidden-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="5af3840" data-element_type="section">
